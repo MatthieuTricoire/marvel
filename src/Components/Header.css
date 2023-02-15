@@ -1,0 +1,19 @@
+/*? Header */
+
+.header {
+  margin-block: 30px;
+  height: 120px;
+  justify-content: space-between;
+}
+
+.header__logo {
+  height: 70px;
+}
+
+.header__nav {
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  font-size: var(--fs-600);
+}

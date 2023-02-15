@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*? Fonts imports */
+@import url("https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  /*? Variables */
+
+  /* Font family */
+  --ff-primary: Marvel;
+
+  /* Font size*/
+  --fs-900: 32px;
+  --fs-600: 24px;
+  --fs-400: 16px;
+  --fs-300: 14px;
+  --fs-200: 10px;
+}
+/*? GENERAL  */
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: var(--ff-primary);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*? UTILITY  */
+
+.container {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
