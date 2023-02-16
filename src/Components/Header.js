@@ -16,18 +16,19 @@ const Header = () => {
         <img src={logo} alt="" className="header__logo" />
       </Link>
       <nav className="row header__nav ">
-        <div
+        <Link
+          to="/"
           className="nav__item
-        hover"
+         hover"
         >
           <span>Characters</span>
-        </div>
-        <div className="nav__item hover">
+        </Link>
+        <Link to="/comics" className="nav__item hover">
           <span>Comics</span>
-        </div>
-        <div className="nav__item hover">
+        </Link>
+        <Link to="/favorites" className="nav__item hover">
           <span>Favorites</span>
-        </div>
+        </Link>
       </nav>
     </header>
   );
