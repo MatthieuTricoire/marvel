@@ -8,12 +8,15 @@ import thorHammer from "../assets/img/thor_Hammer_ligth.svg";
 import axios from "axios";
 import ComicCard from "../Components/ComicCard";
 
+//? Style import
+import "../Pages/Comics.css";
+
 const Comics = () => {
   //? States declarations
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [searchComic, setSearchComic] = useState("");
+  const [searchComic, setSearchComic] = useState("te");
 
   useEffect(() => {
     const fetchData = async () => {

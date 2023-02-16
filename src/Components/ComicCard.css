@@ -1,0 +1,10 @@
+/** ComicCard Style */
+
+.comic-card {
+  width: calc((100% - 40px) / 5);
+  border: 1px solid red;
+}
+
+.comic-card__thumbnail {
+  width: 100%;
+}

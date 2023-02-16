@@ -1,3 +1,5 @@
+import "./ComicCard.css";
+
 const ComicCard = ({ comic }) => {
   return (
     <div className="comic-card column">
@@ -11,6 +13,7 @@ const ComicCard = ({ comic }) => {
           alt=""
         />
       </div>
+      <div className="comic-card__title">{comic.title}</div>
     </div>
   );
 };
