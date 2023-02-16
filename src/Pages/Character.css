@@ -1,0 +1,28 @@
+/*? CHARACTER PAGE STYLE */
+
+.character {
+  height: 500px;
+  border: solid 1px red;
+}
+.character__img {
+  object-fit: contain;
+  border: solid 1px blue;
+  width: 50%;
+}
+
+.character__details {
+  width: 50%;
+  border: solid 1px green;
+}
+
+.character__name {
+  margin-top: 30px;
+  font-size: var(--fs-900);
+  font-weight: 700;
+  text-align: center;
+}
+
+.character__information {
+  margin-top: 100px;
+  font-size: var(--fs-600);
+}

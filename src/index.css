@@ -2,6 +2,24 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+:root {
+  /*? Variables */
+
+  /* Font family */
+  --ff-primary: Marvel;
+
+  /* Font size*/
+  --fs-900: 32px;
+  --fs-600: 22px;
+  --fs-400: 16px;
+  --fs-300: 14px;
+  --fs-200: 10px;
+
+  /* Colors */
+  --clr-primary-000: white;
+
+  --clr-secondary: hsl(358, 86%, 52%);
+}
 
 html,
 body,

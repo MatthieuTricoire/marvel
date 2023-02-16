@@ -1,28 +1,38 @@
-const Home = ({ data, isLoading }) => {
+//? Components import
+import CharacterCard from "../Components/CharacterCard";
+
+//? Style import
+import "./Home.css";
+
+//? Image import
+import thorHammer from "../assets/img/thor_Hammer_ligth.svg";
+
+const Home = ({ data, isLoading, searchCharacter, setSearchCharacter }) => {
   return isLoading ? (
     <p>En chargement</p>
   ) : (
-    <section>
-      {data.results.map((character) => {
-        return (
-          <div className="character column">
-            <div className="character__title">{character.name}</div>
-            <img
-              className="character__thumbnail"
-              src={
-                character.thumbnail.path +
-                "/portrait_medium." +
-                character.thumbnail.extension
-              }
-              alt=""
-            />
-            <div className="character__description">
-              {character.description}
-            </div>
-          </div>
-        );
-      })}
-    </section>
+    <>
+      <section className="container row search">
+        <div className="search__bar">
+          <input
+            type="text"
+            name="searchCharacter"
+            id="searchCharacter"
+            placeholder="Which one is the best ?! "
+            onChange={(e) => {
+              setSearchCharacter(e.target.value);
+            }}
+            value={searchCharacter}
+          />
+          <img className="search__icon" src={thorHammer} alt="" />
+        </div>
+      </section>
+      <section className="row characters container">
+        {data.results.map((character) => {
+          return <CharacterCard character={character} key={character._id} />;
+        })}
+      </section>
+    </>
   );
 };
 

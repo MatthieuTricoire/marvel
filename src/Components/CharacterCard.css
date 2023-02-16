@@ -1,0 +1,49 @@
+/*? CharacterCard Style */
+
+.character-card {
+  flex-wrap: wrap;
+  width: calc((100% - 25px) / 6);
+  background-color: white;
+  /* padding: 30px; */
+  align-items: center;
+  transition: box-shadow 0.5s, transform 0.6s;
+}
+
+.character-card:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  transform: scale(1.1);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.character-card__title {
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 100%;
+  color: var(--clr-primary-000);
+  font-size: var(--fs-600);
+  /* margin-bottom: 5px; */
+  background-color: var(--clr-secondary);
+  padding-inline: 10px;
+}
+
+.character-card__thumbnail {
+  /* border: 3px solid var(--clr-secondary); */
+  /* border-radius: 10px; */
+  overflow: hidden;
+  width: 100%;
+  height: 150px;
+}
+
+.character-card__thumbnail__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.character-card__description {
+  margin-top: 10px;
+  margin-inline: 10px;
+}
