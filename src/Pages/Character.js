@@ -27,7 +27,7 @@ const Character = ({ handleFavorites, setFavChar, favChar }) => {
       try {
         //   console.log("id reçu en params : " + params.id);
         const response = await axios.get(
-          `site--marvel-backend--vmph8rxlwjhj.code.run/characterId/${params.id}`
+          `http://localhost:4000/characterId/${params.id}`
         );
         // console.log("réponse reçue" + response);
         setDataCharacter(response.data);
@@ -35,7 +35,7 @@ const Character = ({ handleFavorites, setFavChar, favChar }) => {
 
         //? get comics cover
         const responseCover = await axios.get(
-          `site--marvel-backend--vmph8rxlwjhj.code.run/comics/character/${params.id}`
+          `http://localhost:4000/comics/character/${params.id}`
         );
         setCovers(responseCover.data);
         setIsLoading(false);
@@ -125,24 +125,6 @@ const Character = ({ handleFavorites, setFavChar, favChar }) => {
             );
           })}
         </div>
-        {/* <Carousel
-          swipeable={false}
-          draggable={false}
-          showDots={true}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlaySpeed={1000}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-        >
-         
-        </Carousel> */}
       </div>
     </section>
   );
