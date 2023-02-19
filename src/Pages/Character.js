@@ -27,7 +27,7 @@ const Character = ({ handleFavorites, setFavChar, favChar }) => {
       try {
         //   console.log("id reçu en params : " + params.id);
         const response = await axios.get(
-          `http://localhost:4000/characterId/${params.id}`
+          `site--marvel-backend--vmph8rxlwjhj.code.run/characterId/${params.id}`
         );
         // console.log("réponse reçue" + response);
         setDataCharacter(response.data);
@@ -35,7 +35,7 @@ const Character = ({ handleFavorites, setFavChar, favChar }) => {
 
         //? get comics cover
         const responseCover = await axios.get(
-          `http://localhost:4000/comics/character/${params.id}`
+          `site--marvel-backend--vmph8rxlwjhj.code.run/comics/character/${params.id}`
         );
         setCovers(responseCover.data);
         setIsLoading(false);

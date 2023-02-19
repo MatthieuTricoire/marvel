@@ -24,7 +24,7 @@ const Characters = ({ nbItems, nbItemsInit, setNbItems }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/characters?name=${searchCharacter}&skip=${
+          `site--marvel-backend--vmph8rxlwjhj.code.run/characters?name=${searchCharacter}&skip=${
             (pageNb - 1) * nbItems
           }&limit=${nbItems}`
         );
