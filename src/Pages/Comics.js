@@ -1,9 +1,6 @@
 //* React packages import
 import { useState, useEffect } from "react";
 
-//? Image import
-import thorHammer from "../assets/img/thor_Hammer_ligth.svg";
-
 //? Axios import
 import axios from "axios";
 import ComicCard from "../Components/ComicCard";
