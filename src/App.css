@@ -22,6 +22,15 @@ img {
 
 body {
   font-family: var(--ff-primary);
+  color: var(--clr-primary-600);
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /*? UTILITY  */
@@ -39,4 +48,13 @@ body {
 .column {
   display: flex;
   flex-direction: column;
+}
+
+.disable {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.margintop-190 {
+  margin-top: 190px;
 }

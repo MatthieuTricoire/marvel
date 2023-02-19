@@ -1,13 +1,18 @@
 /*? Header */
 
 .header {
+  /* position: fixed;
+  top: 0;
+  right: 0;
+  left: 0; */
   margin-block: 30px;
   height: 120px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header__logo {
-  height: 70px;
+  height: 100px;
 }
 
 .header__nav {

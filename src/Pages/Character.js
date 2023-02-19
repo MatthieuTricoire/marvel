@@ -7,40 +7,19 @@ import { useState, useEffect } from "react";
 //* React router packages import
 import { useParams } from "react-router-dom";
 
-//* Cookies import
-import Cookies from "js-cookie";
-
-//* React multi carousel import
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+//? Icons import
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //* Style import
 import "./Character.css";
+import Loading from "../Components/Loading";
 
-const Character = ({ handleCookies }) => {
+const Character = ({ handleFavorites, setFavChar, favChar }) => {
   const params = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [dataCharacter, setDataCharacter] = useState();
   const [covers, setCovers] = useState();
-
-  //   const responsive = {
-  //     desktop: {
-  //       breakpoint: { max: 3000, min: 1024 },
-  //       items: 3,
-  //       slidesToSlide: 3, // optional, default to 1.
-  //     },
-  //     tablet: {
-  //       breakpoint: { max: 1024, min: 464 },
-  //       items: 2,
-  //       slidesToSlide: 2, // optional, default to 1.
-  //     },
-  //     mobile: {
-  //       breakpoint: { max: 464, min: 0 },
-  //       items: 1,
-  //       slidesToSlide: 1, // optional, default to 1.
-  //     },
-  //   };
 
   //? get the data of this character
   useEffect(() => {
@@ -65,10 +44,10 @@ const Character = ({ handleCookies }) => {
       }
     };
     fetchdata();
-  }, []);
+  }, [params.id]);
 
   return isLoading ? (
-    <p>loading</p>
+    <Loading />
   ) : (
     <section className="container">
       <div className="character row">
@@ -93,15 +72,36 @@ const Character = ({ handleCookies }) => {
               </p>
             )}
           </div>
-          <div className="character__favorite">
-            <button
-              className="btn"
-              onClick={() => {
-                handleCookies("favCharacters", dataCharacter._id);
-              }}
-            >
-              I'm sure, i'm one of your favorites
-            </button>
+          <div className="character__fav">
+            {favChar.includes(dataCharacter._id) ? (
+              <FontAwesomeIcon
+                className="fav-minus"
+                icon="heart-circle-minus"
+                onClick={() => {
+                  handleFavorites(
+                    favChar,
+                    setFavChar,
+                    dataCharacter,
+                    "favCharIds"
+                  );
+                }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="fav-plus"
+                icon="heart-circle-plus"
+                onClick={() => {
+                  handleFavorites(
+                    favChar,
+                    setFavChar,
+                    dataCharacter,
+                    "favCharIds"
+                  );
+                }}
+              />
+            )}
+
+            {/* )} */}
           </div>
         </div>
       </div>
@@ -113,10 +113,11 @@ const Character = ({ handleCookies }) => {
           {covers.comics.map((comic) => {
             return (
               <img
+                key={comic._id}
                 className="cover"
                 src={
                   comic.thumbnail.path +
-                  "/portrait_incredible." +
+                  "/portrait_large." +
                   comic.thumbnail.extension
                 }
                 alt=""

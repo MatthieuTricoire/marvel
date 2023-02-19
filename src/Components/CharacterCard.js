@@ -13,7 +13,7 @@ const CharacterCard = ({ character }) => {
   return (
     <div
       className="character-card column"
-      onClick={() => navigate(`character/${character._id}`)}
+      onClick={() => navigate(`/character/${character._id}`)}
     >
       <div className="character-card__title row">{character.name}</div>
       <div className="character-card__thumbnail">
@@ -21,16 +21,16 @@ const CharacterCard = ({ character }) => {
           className="character-card__thumbnail__img"
           src={
             character.thumbnail.path +
-            "/portrait_medium." +
+            "/standard_xlarge." +
             character.thumbnail.extension
           }
           alt=""
         />
       </div>
-      <div className="character-card__description">
+      <div className="character-card__description row">
         {character.description
-          ? cutString(10, character.description) + "..."
-          : "Désolé mais pour toi ils ont eu la flemme"}
+          ? cutString(8, character.description) + "..."
+          : "Sorry, but for you they had the laziness."}
       </div>
     </div>
   );

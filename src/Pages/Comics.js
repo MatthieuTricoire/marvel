@@ -11,19 +11,29 @@ import ComicCard from "../Components/ComicCard";
 //? Style import
 import "../Pages/Comics.css";
 
-const Comics = () => {
-  //? States declarations
+//? Components import
+import SearchandPagination from "../Components/Search";
+import Loading from "../Components/Loading";
 
+const Comics = ({ favCom, setFavCom, handleFavorites }) => {
+  //? States declarations
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [searchComic, setSearchComic] = useState("te");
+
+  const nbItemsInit = [25, 50, 75, 100];
+  const [nbItems, setNbItems] = useState(nbItemsInit[1]);
+
+  const [searchComic, setSearchComic] = useState("");
+  const [pageNbComics, setPageNbComics] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post("http://localhost:4000/comics", {
-          searchComic: searchComic,
-        });
+        const response = await axios.get(
+          `http://localhost:4000/comics?title=${searchComic}&skip=${
+            (pageNbComics - 1) * nbItems
+          }&limit=${nbItems}`
+        );
         setData(response.data);
         setIsLoading(false);
       } catch (e) {
@@ -31,30 +41,33 @@ const Comics = () => {
       }
     };
     fetchData();
-  }, [searchComic]);
+  }, [searchComic, pageNbComics, nbItems]);
 
   return isLoading ? (
-    <p>Loading</p>
+    <Loading />
   ) : (
     <>
-      <section className="container row search">
-        <div className="search__bar">
-          <input
-            type="text"
-            name="searchCharacter"
-            id="searchCharacter"
-            placeholder="Which one is the best ?! "
-            onChange={(e) => {
-              setSearchComic(e.target.value);
-            }}
-            value={searchComic}
-          />
-          <img className="search__icon" src={thorHammer} alt="" />
-        </div>
-      </section>
+      <SearchandPagination
+        data={data}
+        searchValue={searchComic}
+        setSearchValue={setSearchComic}
+        nbItems={nbItems}
+        setNbItems={setNbItems}
+        nbItemsInit={nbItemsInit}
+        pageNb={pageNbComics}
+        setPageNb={setPageNbComics}
+      />
       <section className="container row comics">
         {data.results.map((comic) => {
-          return <ComicCard comic={comic} key={comic._id} />;
+          return (
+            <ComicCard
+              handleFavorites={handleFavorites}
+              favCom={favCom}
+              setFavCom={setFavCom}
+              comic={comic}
+              key={comic._id}
+            />
+          );
         })}
       </section>
     </>

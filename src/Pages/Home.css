@@ -1,31 +1,8 @@
-/*? HOME STYLE  */
-
-.search {
-  justify-content: center;
-  position: relative;
+.home {
+  height: calc(100vh - 190px);
 }
 
-.search__bar {
-  position: relative;
-  height: 40px;
-}
-
-.search__bar > input {
-  height: 30px;
-  width: 250px;
-  padding-left: 30px;
-}
-
-.search__icon {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  inset: 0;
-  top: 3px;
-  left: 2px;
-}
-
-.characters {
-  flex-wrap: wrap;
-  gap: 5px;
+.home img {
+  height: 100%;
+  object-fit: contain;
 }

@@ -2,9 +2,48 @@
 
 .comic-card {
   width: calc((100% - 40px) / 5);
-  border: 1px solid red;
+  margin-bottom: 20px;
 }
 
 .comic-card__thumbnail {
   width: 100%;
+  position: relative;
+}
+
+.comic-card__thumbnail__favIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  z-index: 2;
+}
+
+.comic-card__caption {
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 10px;
+}
+
+.comic-card__title {
+  width: 80%;
+  height: 40px;
+  align-items: center;
+}
+
+.comic-card__fav {
+  font-size: var(--fs-600);
+}
+
+.fav-minus {
+  color: var(--clr-secondary);
+}
+
+.fav-plus:hover {
+  color: var(--clr-secondary);
+}
+
+.fav-minus:active,
+.fav-plus:active {
+  scale: 1.05;
 }

@@ -17,6 +17,8 @@
 
   /* Colors */
   --clr-primary-000: white;
+  --clr-primary-900: black;
+  --clr-primary-600: hsl(0, 0%, 16%);
 
   --clr-secondary: hsl(358, 86%, 52%);
 }

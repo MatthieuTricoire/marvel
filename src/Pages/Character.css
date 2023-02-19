@@ -27,6 +27,12 @@
   font-size: var(--fs-600);
 }
 
+.character__fav {
+  text-align: center;
+  margin-top: 30px;
+  font-size: var(--fs-900);
+}
+
 .character__cover {
   margin-top: 40px;
   align-items: center;

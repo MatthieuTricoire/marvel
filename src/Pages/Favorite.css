@@ -1,0 +1,25 @@
+.favorite-section {
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.favorite__title {
+  text-align: center;
+  font-size: var(--fs-600);
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--clr-secondary);
+  margin-bottom: 30px;
+}
+.favItem {
+  width: calc((100% - 60px) / 5);
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.favImg {
+  height: 100%;
+  object-fit: fill;
+}

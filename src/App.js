@@ -2,12 +2,6 @@
 //? React Router import
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//? Axios import
-import axios from "axios";
-
-//? Cookies import
-import Cookies from "js-cookie";
-
 //? Main style import
 import "./App.css";
 
@@ -16,75 +10,118 @@ import { useState, useEffect } from "react";
 
 //* Pages import
 import Home from "./Pages/Home";
+import Characters from "./Pages/Characters";
 import Character from "./Pages/Character";
 import Comics from "./Pages/Comics";
 
 //* Components import
 import Header from "./Components/Header";
+import Loading from "./Components/Loading";
+import Favorite from "./Pages/Favorite";
+
+//? FontAwesome import
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faHeartCirclePlus,
+  faHeartCircleMinus,
+  faHeartCircleCheck,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faHeartCirclePlus, faHeartCircleCheck, faHeartCircleMinus);
 
 function App() {
   //? States declarations
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const nbItemsInit = [25, 50, 75, 100];
+  const [nbItems, setNbItems] = useState(nbItemsInit[1]);
 
-  const [searchCharacter, setSearchCharacter] = useState("");
+  const [favChar, setFavChar] = useState([]);
 
-  const [favCharacters, setFavCharacters] = useState(
-    Cookies.get("favCharacters") || ""
-  );
+  const [favCom, setFavCom] = useState([]);
 
-  const handleCookies = (cookieName, favId) => {
-    if (Cookies.get(cookieName)) {
-      const tempCookie = Cookies.get(cookieName);
-      tempCookie = tempCookie + "," + favId;
-      Cookies.set(cookieName, tempCookie, { expires: 5 });
+  useEffect(() => {
+    const loadFavChars = JSON.parse(localStorage.getItem("favCharIds") || "0");
+    const loadFavComs = JSON.parse(localStorage.getItem("favComIds") || "0");
+    if (loadFavChars !== 0) {
+      setFavChar([...loadFavChars]);
+    }
+    if (loadFavComs !== 0) {
+      setFavCom([...loadFavComs]);
+    }
+  }, []);
+
+  const handleFavorites = (state, setState, data, storageName) => {
+    let copyState = state;
+    let addToFav = true;
+    copyState.map((item, idx) => {
+      if (item === data._id) {
+        copyState.splice(idx, 1);
+        addToFav = false;
+      } else {
+        return null;
+      }
+    });
+    if (addToFav) {
+      copyState.push(data._id);
+    }
+    setState([...copyState]);
+    localStorage.setItem(storageName, JSON.stringify(state));
+
+    let storage = localStorage.getItem(data._id || "0");
+
+    if (storage === null) {
+      localStorage.setItem(data._id, JSON.stringify(data));
     } else {
-      Cookies.set(cookieName, favId, { expires: 5 });
+      localStorage.removeItem(data._id);
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post("http://localhost:4000/characters", {
-          searchCharacter: searchCharacter,
-        });
-        setData(response.data);
-        setIsLoading(false);
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-    fetchData();
-  }, [searchCharacter]);
-
-  // console.log(data);
   return (
     <Router>
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/characters"
           element={
-            <Home
-              data={data}
-              isLoading={isLoading}
-              searchCharacter={searchCharacter}
-              setSearchCharacter={setSearchCharacter}
+            <Characters
+              nbItems={nbItems}
+              nbItemsInit={nbItemsInit}
+              setNbItems={setNbItems}
             />
           }
-        />
+        ></Route>
         <Route
           path="/character/:id"
           element={
             <Character
-              favCharacters={favCharacters}
-              setFavCharacters={setFavCharacters}
-              handleCookies={handleCookies}
+              favChar={favChar}
+              setFavChar={setFavChar}
+              handleFavorites={handleFavorites}
             />
           }
         />
-        <Route path="/comics" element={<Comics />} />
+        <Route
+          path="/comics"
+          element={
+            <Comics
+              favCom={favCom}
+              setFavCom={setFavCom}
+              handleFavorites={handleFavorites}
+            />
+          }
+        />
+        <Route path="/loading" element={<Loading />} />
+        <Route
+          path="/favorite"
+          element={
+            <Favorite
+              favChar={favChar}
+              setFavChar={setFavChar}
+              handleFavorites={handleFavorites}
+              favCom={favCom}
+              setFavCom={setFavCom}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

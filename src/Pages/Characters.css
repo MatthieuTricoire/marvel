@@ -1,0 +1,6 @@
+/*? Characters STYLE  */
+
+.characters {
+  flex-wrap: wrap;
+  gap: 5px;
+}
