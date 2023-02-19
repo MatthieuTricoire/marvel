@@ -27,7 +27,7 @@ const Comics = ({ favCom, setFavCom, handleFavorites }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `marvel-backend:8080?title=${searchComic}&skip=${
+          `site--marvel-backend--vmph8rxlwjhj.code.run/comics?title=${searchComic}&skip=${
             (pageNbComics - 1) * nbItems
           }&limit=${nbItems}`
         );
