@@ -55,9 +55,8 @@ function App() {
       if (item === data._id) {
         copyState.splice(idx, 1);
         addToFav = false;
-      } else {
-        return null;
       }
+      return null;
     });
     if (addToFav) {
       copyState.push(data._id);
